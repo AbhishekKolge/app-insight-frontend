@@ -20,9 +20,12 @@ const AuthChecker = () => {
   }, [dispatch, firstRender]);
 
   useEffect(() => {
+    console.log(1, isLoggedIn)
     if (isLoggedIn === false && !isAuthPage) {
+      console.log(2, isLoggedIn)
       router.replace('/auth/login');
     } else if (isLoggedIn && isAuthPage) {
+      console.log(3, isLoggedIn)
       router.replace('/dashboard');
     }
   }, [isLoggedIn, router, isAuthPage]);

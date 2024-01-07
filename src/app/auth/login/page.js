@@ -61,7 +61,6 @@ const Login = (props) => {
         .then((data) => {
           loginFormik.resetForm();
           dispatch(loginHandler(data));
-          router.replace('/dashboard');
         })
         .catch((error) => {
           if (error.status === 403) {

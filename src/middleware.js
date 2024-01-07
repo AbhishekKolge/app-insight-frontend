@@ -31,9 +31,9 @@ export function middleware(request) {
     }
   }
 
-  // if (path === '/') {
-  //   return NextResponse.redirect(new URL('/dashboard', request.url));
-  // }
+  if (path === '/') {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
+  }
 }
 
 export const config = {

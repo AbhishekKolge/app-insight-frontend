@@ -4,9 +4,7 @@ export function middleware(request) {
   const path = request.nextUrl.pathname;
   const searchParams = request.nextUrl.searchParams;
   const isAuthPath = path.startsWith('/auth');
-  const isProtectedPath = path.startsWith('/user');
-  // const isProtectedPath =
-  //   path.startsWith('/dashboard') || path.startsWith('/user');
+  const isProtectedPath = path.startsWith('/dashboard') || path.startsWith('/user');
   const authCookie = request.cookies.get('auth')?.value || '';
 
   if (authCookie && isAuthPath) {

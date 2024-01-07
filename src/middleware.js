@@ -4,12 +4,13 @@ export function middleware(request) {
   const path = request.nextUrl.pathname;
   const searchParams = request.nextUrl.searchParams;
   const isAuthPath = path.startsWith('/auth');
-  const isProtectedPath =
-    path.startsWith('/dashboard') || path.startsWith('/user');
+  const isProtectedPath = path.startsWith('/user');
+  // const isProtectedPath =
+  //   path.startsWith('/dashboard') || path.startsWith('/user');
   const authCookie = request.cookies.get('auth')?.value || '';
 
   if (authCookie && isAuthPath) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    return NextResponse.redirect(new URL('/', request.url));
   }
 
   if (!authCookie && isProtectedPath) {
@@ -30,9 +31,9 @@ export function middleware(request) {
     }
   }
 
-  if (path === '/') {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+  // if (path === '/') {
+  //   return NextResponse.redirect(new URL('/dashboard', request.url));
+  // }
 }
 
 export const config = {

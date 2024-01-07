@@ -8,7 +8,7 @@ export function middleware(request) {
   const authCookie = request.cookies.get('auth')?.value || '';
 
   if (authCookie && isAuthPath) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   if (!authCookie && isProtectedPath) {

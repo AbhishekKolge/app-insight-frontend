@@ -23,7 +23,7 @@ const AuthChecker = () => {
     if (isLoggedIn === false && !isAuthPage) {
       router.replace('/auth/login');
     } else if (isLoggedIn && isAuthPage) {
-      router.replace('/dashboard');
+      router.replace('/');
     }
   }, [isLoggedIn, router, isAuthPage]);
 

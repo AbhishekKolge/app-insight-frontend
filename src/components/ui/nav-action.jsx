@@ -1,4 +1,4 @@
-import { LogOut, User, Loader2 } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
 import Link from 'next/link';
 
 import {
@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/utils/helper';
 
 const NavAction = (props) => {
-  const { auth, onLogout, isLoggingOut } = props;
+  const { auth, onLogout } = props;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,7 +44,6 @@ const NavAction = (props) => {
         <DropdownMenuItem onClick={onLogout}>
           <LogOut className='mr-2 h-4 w-4' />
           <span>Log out</span>
-          {isLoggingOut && <Loader2 className='ml-2 h-4 w-4 animate-spin' />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

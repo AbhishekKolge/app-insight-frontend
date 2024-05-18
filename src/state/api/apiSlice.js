@@ -3,8 +3,11 @@ import { logoutHandler } from '../../features/auth/authAction';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.BASE_URL,
-  credentials: 'include',
-  prepareHeaders: (headers) => {
+  prepareHeaders: (headers, { getState }) => {
+    const token = getState().auth.token;
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
     return headers;
   },
 });

@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import NavAction from '../ui/nav-action';
 
 import { logoutHandler } from '@/features/auth/authAction';
-import { useLogoutMutation } from '@/features/auth/authApiSlice';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -18,21 +17,8 @@ const Navbar = () => {
   const isAuthPage = pathname.startsWith('/auth');
   const isRegisterPage = pathname.startsWith('/auth/sign-up');
 
-  const [logout, { isLoading: logoutIsLoading }] = useLogoutMutation();
-
   const logoutAccountHandler = () => {
-    logout()
-      .unwrap()
-      .then(() => {
-        dispatch(logoutHandler());
-      })
-      .catch((error) => {
-        if (error.data?.msg) {
-          toast.error(error.data.msg);
-        } else {
-          toast.error('Something went wrong!, please try again');
-        }
-      });
+    dispatch(logoutHandler());
   };
 
   return (
@@ -48,11 +34,7 @@ const Navbar = () => {
             <Skeleton className='h-[50px] w-[50px] rounded-full' />
           ))}
         {auth.isLoggedIn ? (
-          <NavAction
-            auth={auth}
-            onLogout={logoutAccountHandler}
-            isLoggingOut={logoutIsLoading}
-          />
+          <NavAction auth={auth} onLogout={logoutAccountHandler} />
         ) : (
           auth.isLoggedIn === false && (
             <Button variant='primary' asChild>

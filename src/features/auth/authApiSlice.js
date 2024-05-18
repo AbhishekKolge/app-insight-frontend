@@ -37,12 +37,6 @@ const authApiSlice = apiSlice.injectEndpoints({
         body: userDetails,
       }),
     }),
-    logout: builder.mutation({
-      query: () => ({
-        url: '/auth/logout',
-        method: 'DELETE',
-      }),
-    }),
   }),
 });
 
@@ -52,5 +46,4 @@ export const {
   useForgotPasswordMutation,
   useResetPasswordMutation,
   useLoginMutation,
-  useLogoutMutation,
 } = authApiSlice;

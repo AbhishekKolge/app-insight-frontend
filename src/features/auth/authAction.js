@@ -51,19 +51,21 @@ const checkLoginStatus = () => {
   };
 };
 
-const loginHandler = ({ name, profileImage }) => {
+const loginHandler = ({ token, name, profileImage }) => {
   return (dispatch) => {
     const accessExpirationTime =
       Date.now() + +process.env.ACCESS_TOKEN_EXPIRATION_TIME;
 
     saveAuthCookie({
       accessExpirationTime,
+      token,
       name,
       profileImage,
     });
     dispatch(
       authActions.login({
         accessExpirationTime,
+        token,
         name,
         profileImage,
       })
